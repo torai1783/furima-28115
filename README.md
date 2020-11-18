@@ -15,7 +15,6 @@
 ### Association
 - has_many :items
 - has_many :users_items
-- has_many :users, through: users_items
 
 ## items テーブル
 
@@ -50,14 +49,14 @@
 
 ## buyers　テーブル
 
-| Column         | Type       | Option            |
-| -------------- |----------- | ----------------- |
-| users_items    | reference  | foreign_key: true |
-| postalcood     | string     | null: false       |
-| prefecture     | integer    | null: false       |
-| municipality   | string     | null: false       |
-| address        | string     | null: false       |
-| building       | string     |                   |
+| Column            | Type       | Option            |
+| ----------------  |----------- | ----------------- |
+| users_items       | reference  | foreign_key: true |
+| postalcood        | string     | null: false       |
+| deliverysource_id | integer    | null: false       |
+| municipality      | string     | null: false       |
+| address           | string     | null: false       |
+| building          | string     |                   |
 
 ### Association
 
