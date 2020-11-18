@@ -2,34 +2,39 @@
 
 ## users テーブル
 
-| Column   | Type   | Option      |
-| -------- | ------ | ----------- |
-| nickname | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
-| birthday | string | null: false |
+| Column             | Type   | Option      |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| name_jp            | string | null: false |
+| neme_kana          | string | null: false |
+| birthday           | string | null: false |
+
 
 ### Association
-
+- has_many :items
 - has_many :users_items
 - has_many :users, through: users_items
 
 ## items テーブル
 
-| Column          | Type   | Option      |
-| --------------- | ------ | ----------- |
-| user_id         | string | null: false |
-| itemname        | string | null: false |
-| category        | string | null: false |
-| status          | string | null: false |
-| charges         | string | null: false |
-| deliverysource  | string | null: false |
-| deliverydays    | string | null: false |
+| Column          | Type      | Option            |
+| --------------- | --------- | ----------------- |
+| user_id         | reference | foreign_key: true |
+| itemname        | string    | null: false       |
+| price           | integer   | null: false       |
+| description     | integer   | null: false       |
+| category        | integer   | null: false       |
+| status          | integer   | null: false       |
+| charges         | integer   | null: false       |
+| deliverysource  | integer   | null: false       |
+| deliverydays    | integer   | null: false       |
 
 ### Association
 
 - has_many :users_items
-- has_many :items, through: users_items
+- belongs_to :user
 
 ## users_items　テーブル
 
@@ -47,20 +52,15 @@
 
 | Column         | Type       | Option            |
 | -------------- |----------- | ----------------- |
-| user           | reference  | foreign_key: true |
-| item           | reference  | foreign_key: true |
-| cardnumber     | string     | null: false       |
-| expirationdate | string     | null: false       |
-| securitycood   | string     | null: false       |
+| users_items    | reference  | foreign_key: true |
 | postalcood     | string     | null: false       |
+| prefecture     | string     | null: false       |
 | municipality   | string     | null: false       |
 | address        | string     | null: false       |
-| building       | string     | null: false       |
+| building       | string     |                   |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
-
+- belongs_to :users_items
 
 
