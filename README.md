@@ -9,7 +9,7 @@
 | encrypted_password | string | null: false |
 | name_jp            | string | null: false |
 | neme_kana          | string | null: false |
-| birthday           | string | null: false |
+| birthday           | date　 | null: false |
 
 
 ### Association
@@ -19,17 +19,17 @@
 
 ## items テーブル
 
-| Column          | Type      | Option            |
-| --------------- | --------- | ----------------- |
-| user_id         | reference | foreign_key: true |
-| itemname        | string    | null: false       |
-| price           | integer   | null: false       |
-| description     | integer   | null: false       |
-| category        | integer   | null: false       |
-| status          | integer   | null: false       |
-| charges         | integer   | null: false       |
-| deliverysource  | integer   | null: false       |
-| deliverydays    | integer   | null: false       |
+| Column             | Type      | Option            |
+| -----------------  | --------- | ----------------- |
+| user               | reference | foreign_key: true |
+| itemname           | string    | null: false       |
+| price              | integer   | null: false       |
+| description        | text      | null: false       |
+| category_id        | integer   | null: false       |
+| status_id          | integer   | null: false       |
+| charges_id         | integer   | null: false       |
+| deliverysource_id  | integer   | null: false       |
+| deliverydays_id    | integer   | null: false       |
 
 ### Association
 
@@ -54,7 +54,7 @@
 | -------------- |----------- | ----------------- |
 | users_items    | reference  | foreign_key: true |
 | postalcood     | string     | null: false       |
-| prefecture     | string     | null: false       |
+| prefecture     | integer    | null: false       |
 | municipality   | string     | null: false       |
 | address        | string     | null: false       |
 | building       | string     |                   |
