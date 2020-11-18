@@ -7,10 +7,15 @@
 | nickname           | string | null: false |
 | email              | string | null: false |
 | encrypted_password | string | null: false |
-| name_jp            | string | null: false |
-| neme_kana          | string | null: false |
+| family_name_jp     | string | null: false |
+| first_name_jp      | string | null: false |
+| family_name_kana   | string | null: false |
+| first_name_kana    | string | null: false |
 | birthday           | date　 | null: false |
 
+
+family_name_kana
+first_name_kana
 
 ### Association
 - has_many :items
@@ -21,7 +26,7 @@
 | Column             | Type      | Option            |
 | -----------------  | --------- | ----------------- |
 | user               | reference | foreign_key: true |
-| itemname           | string    | null: false       |
+| name               | string    | null: false       |
 | price              | integer   | null: false       |
 | description        | text      | null: false       |
 | category_id        | integer   | null: false       |
@@ -32,7 +37,7 @@
 
 ### Association
 
-- has_many :users_items
+- has_one :users_item
 - belongs_to :user
 
 ## users_items　テーブル
@@ -56,10 +61,11 @@
 | deliverysource_id | integer    | null: false       |
 | municipality      | string     | null: false       |
 | address           | string     | null: false       |
+| tel               | string     | null: false       |
 | building          | string     |                   |
 
 ### Association
 
-- belongs_to :users_items
+- belongs_to :users_item
 
 
