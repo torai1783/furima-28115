@@ -3,16 +3,16 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  validates :nickname, presence: true
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
-  VALID_PASSWORD_REGEX =/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
-  validates_format_of :password, with: VALID_PASSWORD_REGEX,  message: 'Include both letters and numbers', length: { minimum:6 }
-  validates :family_name_jp, presence: true
-  validates :first_name_jp, presence: true
-  KATAKANA_REGEXP = /\A[\p{katakana}\u{30fc}]+\z/
-  validates :family_name_kana, presence: true, format: { with: KATAKANA_REGEXP }
-  validates :first_name_kana, presence: true, format: { with: KATAKANA_REGEXP }
-  validates :birthday, presence: true
+  
+    with_options presence: true do
+      validates :nickname
+      validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, messages: "Email can't be blank" }
+      #validates :email, uniqueness: { case_sensitive: true }
+      validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze,  messages: 'Include both letters and numbers', length: { minimum:6 }}
+      validates :family_name_jp, format: { with: /\A[ぁ-んァ-ン一-龥]/, messages: "Family name jp can't be blank" }
+      validates :first_name_jp, format: { with: /\A[ぁ-んァ-ン一-龥]/, messages: "First name jp can't be blank" }
+      validates :family_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, messages: "Family name kana can't be blank" }
+      validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, messages: "First name kana can't be blank" }
+      validates :birthday
+    end
 end
