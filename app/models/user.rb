@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  has_many :users_items
+  has_many :items, through: :users_items       
+
+         
+  
     with_options presence: true do
       validates :nickname
       validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, messages: "Email can't be blank" }
