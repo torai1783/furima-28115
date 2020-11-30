@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :charges
   belongs_to :deliverysource
   belongs_to :deliverydays
+  has_one_atached :image
   has_many :users_items
   has_many :users, through: :users_items
   
