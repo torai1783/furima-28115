@@ -1,18 +1,25 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :status
+  belongs_to :charges
+  belongs_to :deliverysource
+  belongs_to :deliverydays
   has_many :users_items
-  has_many :users, through: :users-items
+  has_many :users, through: :users_items
+  
+
+  with_options presence: true do
+    validates :name, numericality: { other_than: 1 }, length: {minimum:40}
+    validates :image, numericality: { other_than: 1 }
+    validates :description, numericality: { other_than: 1 }
+    #validates :price, format:　{ with: /\A[300-9,999,999]\z/}, numericality: { other_than: 1 }
+    validates :category_id, numericality: { other_than: 1 }
+    validates :status_id, numericality: { other_than: 1 }  
+    validates :charges_id, numericality: { other_than: 1 } 
+    validates :deliverysource_id, numericality: { other_than: 1 } 
+    validates :deliverydays_id, numericality: { other_than: 1 }
+  end
 end
 
-  #with_options presence: true do
-
-  　　#validates :name, format: {with: length:{minimam 40}}
-  　　#validates :image
-  　　#validates :description
-  　　#validates :price, format: { with: [0-9]}
-  　　#validates :category_id
-  　　#validates :status_id  
-  　　#validates :charges_id 
-  　　#validates :deliverysource_id 
-  　　#validates :deliverydays_id
-  #end
-end
+#validates_inclusion_of
