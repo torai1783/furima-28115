@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.all
-    @items = Item.oder("created_at DESC")
-    @user = User.find(params[:user_id])
+    @items = Item.order("created_at DESC")
+    # @user = User.find(params[:user_id])
   end
 
   def new
@@ -10,17 +10,17 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = item.new(item_params)
-    if @items.save
+    @item = Item.new(item_params)
+    if @item.save
       redirect_to root_path
     else
-      render :index
+      render :new
     end
   end
 
   private
   def item_params
-   params.require(:item).permit(:user_id, :name, :image, :price, :description, :category_id, :status_id, :charges_id, :deliverysource_id, :deliverydays_id )
+   params.require(:item).permit(:name, :image, :price, :description, :category_id, :status_id, :charge_id, :deliverysource_id, :deliveryday_id ).merge(user_id: current_user.id)
   end
 
 end

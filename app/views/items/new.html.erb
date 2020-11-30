@@ -5,10 +5,10 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with local: true do |f| %>
+    <%= form_with model: @item, url:items_path, local: true do |f| %>
 
 
-    <%#= render 'shared/error_messages', model:  f.object %>
+    <%= render 'shared/error_messages', model: f.object %>
 
 
     <%# 出品画像 %>
@@ -71,7 +71,7 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:charges_id, Charge.all, :id, :name, {class:"select-box", id:"item-shipping-fee-status"}) %>
+        <%= f.collection_select(:charge_id, Charge.all, :id, :name, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
@@ -81,7 +81,7 @@
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:deliverydays_id, Deliveryday.all, :id, :name, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <%= f.collection_select(:deliveryday_id, Deliveryday.all, :id, :name, {class:"select-box", id:"item-scheduled-delivery"}) %>
       </div>
     </div>
     <%# /配送について %>
@@ -102,9 +102,11 @@
           <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
         </div>
         <div class="price-content">
+          <script src="item_price.js"></script>
           <span>販売手数料 (10%)</span>
           <span>
-            <span id='add-tax-price'></span>円
+            <span id='add-tax-price'>
+            </span>円
           </span>
         </div>
         <div class="price-content">
