@@ -1,6 +1,4 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:create, :show]
-
   def index
     @items = Item.all
     @items = Item.order("created_at DESC")
@@ -12,20 +10,16 @@ class ItemsController < ApplicationController
   end
 
   def show
-    #@item = Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def create
-    #@item = Item.new(item_params)
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
       render :new
     end
-  end
-
-  def set_item
-    @item = Item.find(params[:id])
   end
 
   private

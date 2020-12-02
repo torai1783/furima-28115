@@ -17,7 +17,7 @@ class Item < ApplicationRecord
     validates_inclusion_of :price, in:300..9999999
     validates :price, format: {with: /\A[0-9]+\z/}
   end
-  with_options numericality: { other_than: 0 }
+  with_options numericality: { other_than: 0 } do
     validates :category_id
     validates :status_id
     validates :charge_id
