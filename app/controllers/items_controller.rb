@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
+
   def index
-    @items = Item.all
     @items = Item.order("created_at DESC")
-    # @user = User.find(params[:user_id])
   end
 
   def new
