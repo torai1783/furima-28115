@@ -8,7 +8,13 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def destory
+    @item = item.find(params[:id])
+    item.destroy
+  end
+
   def show
+    @item = Item.find(params[:id])
   end
 
   def create
@@ -24,5 +30,4 @@ class ItemsController < ApplicationController
   def item_params
    params.require(:item).permit(:name, :image, :price, :description, :category_id, :status_id, :charge_id, :deliverysource_id, :deliveryday_id ).merge(user_id: current_user.id)
   end
-
 end
