@@ -8,10 +8,10 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  def destory
-    @item = item.find(params[:id])
-    item.destroy
-  end
+  #def destory
+   # @item = item.find(params[:id])
+    #item.destroy
+ # end
 
   def show
     @item = Item.find(params[:id])
