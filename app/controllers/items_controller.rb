@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:edit]
-  before_action :set_item, only: [:edit, :show,]
+  before_action :set_item, only: [:edit, :show, :update]
 
   
   def index
@@ -12,13 +12,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    current_user.id unless @item.user_id
     redirect_to root_path unless current_user.id == @item.user_id
   end
 
   def update
     @item.update(item_params)
-    if @item.save
+    if @item.update(item_params)
       redirect_to item_path
     else
       render :edit
