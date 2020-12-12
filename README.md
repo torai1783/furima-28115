@@ -59,7 +59,7 @@ first_name_kana
 | users_items       | reference  | foreign_key: true |
 | postalcood        | string     | null: false       |
 | deliverysource_id | integer    | null: false       |
-| municipality      | string     | null: false       |
+| city              | string     | null: false       |
 | address           | string     | null: false       |
 | tel               | string     | null: false       |
 | building          | string     |                   |
