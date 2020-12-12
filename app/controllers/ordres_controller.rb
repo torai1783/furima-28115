@@ -1,0 +1,4 @@
+class OrdesController < ApplicationController
+
+  
+end
