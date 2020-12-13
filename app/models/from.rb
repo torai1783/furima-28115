@@ -13,7 +13,7 @@ class order_users_items
     validates :building, format:  {with: /\A[0-9]+\z/}
 
     def save
-      order = Order.create(user_id: user_id, users_items_id: users_items_id)
+      @order = Order.create(user_id: user_id, users_items_id: users_items_id)
       Address.create(postalcode: postalcode, deliverysource_id: deliverysource_id, city: city, address: address, building: building,tel: tel, users_items_id: users_items.id )
   end
 end

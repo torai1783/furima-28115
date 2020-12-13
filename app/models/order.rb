@@ -1,6 +1,8 @@
 class Order < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to: users
+  has_one :users
+  has_one :items
+  belongs_to :users_item
 
     with_options presence: true do
       validates :users_items
