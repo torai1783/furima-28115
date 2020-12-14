@@ -1,8 +1,9 @@
-class OrdesController < ApplicationController
+class OrdersController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @order = Order.order("created_at DESC")
+    @orders = Order.order("created_at DESC")
+    @item = Item.find(params[:item_id])
   end
 
   def new

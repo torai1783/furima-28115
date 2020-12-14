@@ -6,12 +6,15 @@ class Order < ApplicationRecord
 
     with_options presence: true do
       validates :users_items
-      validates :postalcood, format: { with: ^[0-9]{3}-[0-9]{4}$, }
-      validates :deliverysource_id
+      validates :postalcood, format: {with: /\A\d{3}[-]\d{4}\z/}
       validates :city
       validates :address
       validates :tel
-      validates :building, format:  {with: /\A[0-9]+\z/}
+      validates :building
+    end
+
+    with_options numericality: { other_than: 0 } do
+      validates :deliverysource_id
    end
 end
 
