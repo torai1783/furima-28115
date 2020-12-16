@@ -49,16 +49,16 @@ ActiveRecord::Schema.define(version: 2020_12_10_130745) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "users_items_id"
-    t.string "postalcood", null: false
+    t.bigint "users_item_id"
+    t.string "postalcode", null: false
     t.integer "deliverysource_id", null: false
-    t.string "ctiy", null: false
+    t.string "city", null: false
     t.string "address", null: false
     t.string "tel", null: false
     t.string "building", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_items_id"], name: "index_orders_on_users_items_id"
+    t.index ["users_item_id"], name: "index_orders_on_users_item_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2020_12_10_130745) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "users"
-  add_foreign_key "orders", "users_items", column: "users_items_id"
+  add_foreign_key "orders", "users_items"
   add_foreign_key "users_items", "items"
   add_foreign_key "users_items", "users"
 end

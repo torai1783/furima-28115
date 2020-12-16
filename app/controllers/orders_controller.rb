@@ -1,26 +1,29 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  #before_action :set_item, only: [:index, :create]
 
   def index
-    @orders = Order.order("created_at DESC")
+    @order = OrderItem.new
     @item = Item.find(params[:item_id])
   end
 
-  def new
-    @order = Order.new
-  end
-
   def create
-    @order = Order.new(order_params)
-    if @order.save
-      redirect_to root_path
+    @item = Item.find(params[:item_id])
+    @order = OrderItem.new(order_params)
+    if @order.valid?
+       @order.save
+       redirect_to root_path
     else
-      render :new
+      render :index
     end
+
+    #def set_item
+      #@item = Item.find(params[:item_id])
+    #end
   end
 
   private
   def order_params
-    params.require(:order).permit(:users_items, :postalcood, :deliverysource_id, :city, :address, :tel, :building ).merge(user_id: current_user.id)
+    params.require(:order_item).permit(:postalcode, :deliverysource_id, :city, :address, :tel, :building, :users_item ).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 end
