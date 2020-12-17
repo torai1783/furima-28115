@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_12_10_130745) do
     t.string "city", null: false
     t.string "address", null: false
     t.string "tel", null: false
-    t.string "building", null: false
+    t.string "building"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["users_item_id"], name: "index_orders_on_users_item_id"

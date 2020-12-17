@@ -8,7 +8,6 @@ class OrderItem
     validates :city
     validates :address
     validates :tel, format: {with: /\A\d{11}\z/}
-    validates :deliverysource_id
     validates :token
     validates :user_id
     validates :item_id
