@@ -8,9 +8,7 @@ FactoryBot.define do
     deliverysource_id             {2}
     token                         {"tok_abcdefghijk00000000000000000"}
     building                      {"ハイツ201"}
-    
-    user 
-    item   
+
   end
 end
 
