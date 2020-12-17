@@ -5,13 +5,16 @@ class OrdersController < ApplicationController
   def index
     @order = OrderItem.new
     @item = Item.find(params[:item_id])
-    # 出品者はURLを直接入力して購入ページに遷移しようとすると、トップページに遷移すること
-    if @item.user_id == current_user.id
+     #出品者はURLを直接入力して購入ページに遷移しようとすると、トップページに遷移すること
+     #URLを直接入力して購入済み商品の購入ページへ遷移しようとすると、トップページに遷移すること
+    if @item.user_id == current_user.id 
        redirect_to root_path
     end
-    if @order
+
+    if @item.users_item.present?
        redirect_to root_path
     end
+
   end
 
   def create
