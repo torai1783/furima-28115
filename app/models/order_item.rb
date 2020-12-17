@@ -4,7 +4,7 @@ class OrderItem
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
-    validates :postalcode, format: {with: /\A\d{3}[-]|\d{4}\z/}
+    validates :postalcode, format: {with: /\A\d{3}[-]\d{4}\z/}
     validates :city
     validates :address
     validates :tel, format: {with: /\A\d{11}\z/}
