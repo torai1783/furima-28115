@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :deliveryday
   belongs_to :user
   has_one_attached :image
-  has_many :users_items
+  has_one :users_item
   
 
   with_options presence: true do
