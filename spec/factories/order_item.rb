@@ -6,6 +6,7 @@ FactoryBot.define do
     address                       {"青山1-1"}
     tel                           {"09012345678"}
     deliverysource_id             {2}
+    token                         {"tok_abcdefghijk00000000000000000"}
  
   end
 end

@@ -8,7 +8,7 @@ RSpec.describe OrderItem, type: :model do
   describe '商品購入' do
     context '購入できるとき' do
     end
-    it "配送先の情報として、郵便番号・都道府県・市区町村・番地・電話番号がある" do
+    it "配送先の情報として、郵便番号・都道府県・市区町村・番地・電話番号・tokenがある" do
       expect(@order).to be_valid
     end
   end
@@ -54,6 +54,12 @@ RSpec.describe OrderItem, type: :model do
       @order.tel = "090123456789"
       @order.valid?   
       expect(@order.errors.full_messages).to include("Tel is invalid")
+     end
+
+     it "tokenが空では登録できない" do
+      @order.token = nil
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Token can't be blank")
      end
   end   
 end
