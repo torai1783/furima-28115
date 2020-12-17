@@ -56,7 +56,7 @@ first_name_kana
 
 | Column            | Type       | Option            |
 | ----------------  |----------- | ----------------- |
-| users_items       | reference  | foreign_key: true |
+| users_item        | reference  | foreign_key: true |
 | postalcood        | string     | null: false       |
 | deliverysource_id | integer    | null: false       |
 | city              | string     | null: false       |

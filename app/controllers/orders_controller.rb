@@ -1,10 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  #before_action :set_item, only: [:index, :create]
+  before_action :set_item, only: [:index, :create]
 
   def index
     @order = OrderItem.new
-    @item = Item.find(params[:item_id])
      #出品者はURLを直接入力して購入ページに遷移しようとすると、トップページに遷移すること
      #URLを直接入力して購入済み商品の購入ページへ遷移しようとすると、トップページに遷移すること
     if @item.user_id == current_user.id 
@@ -18,7 +17,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = OrderItem.new(order_params)
     if @order.valid?
        pay_item
@@ -29,9 +27,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  #def set_item
-      #@item = Item.find(params[:item_id])
-  #end
+  def set_item
+      @item = Item.find(params[:item_id])
+  end
 
   def pay_item
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"] #PAY.JPテスト秘密鍵

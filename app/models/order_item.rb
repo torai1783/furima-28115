@@ -10,6 +10,8 @@ class OrderItem
     validates :tel, format: {with: /\A\d{11}\z/}
     validates :deliverysource_id
     validates :token
+    validates :user_id
+    validates :item_id
   end
   
   with_options numericality: { other_than: 0 } do
